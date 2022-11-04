@@ -35,7 +35,7 @@ fun CategoryListScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .background(Color.Black),
+                    .background(Color.Black.copy(alpha = 0.9f)),
                 verticalArrangement = Arrangement.Top
             ) {
                 CategoryListUi(

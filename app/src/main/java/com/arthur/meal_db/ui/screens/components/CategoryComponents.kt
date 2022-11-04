@@ -96,6 +96,7 @@ fun CategoryItem(
                                 colors = listOf(
                                     Color.Transparent,
                                     Color.Transparent,
+                                    Color.Transparent,
                                     Color.Black,
                                 )
                             )
