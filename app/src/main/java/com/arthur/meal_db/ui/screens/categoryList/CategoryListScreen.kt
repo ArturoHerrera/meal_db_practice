@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -36,12 +35,13 @@ fun CategoryListScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .background(Color.Black.copy(alpha = 0.90f)),
+                    .background(Color.Black),
                 verticalArrangement = Arrangement.Top
             ) {
-                uiState.categoryList.forEach{
-                    Text(text = it.category ?: "Categoria")
-                }
+                CategoryListUi(
+                    categoryList = uiState.categoryList,
+                    onCategoryClicked = {}
+                )
             }
         }
         ProgressBar(state = uiState.loading)
