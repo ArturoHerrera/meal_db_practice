@@ -26,9 +26,15 @@ class CategoryListRepository(
                     .setCategoryDescription(mCategory.strCategoryDescription)
                     .build()
             }
-            CategoryList(categorySimpleList = mList, errorMessage = null)
+            CategoryList(
+                categorySimpleList = mList,
+                errorMessage = null
+            )
         } else {
-            CategoryList(categorySimpleList = emptyList(), errorMessage = result.getMessage())
+            CategoryList(
+                categorySimpleList = emptyList(),
+                errorMessage = result.getMessage()
+            )
         }
     }.catch { e -> e.printStackTrace() }
         .flowOn(Dispatchers.IO)

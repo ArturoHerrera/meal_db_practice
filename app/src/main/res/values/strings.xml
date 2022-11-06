@@ -2,5 +2,5 @@
     <string name="app_name">Meal-DB</string>
 
     <!-- Issues -->
-    <string name="no_categorys_issue">No se encontraron categorias</string>
+    <string name="no_results_issue">No se encontraron resultados</string>
 </resources>

@@ -1,9 +1,9 @@
-package com.arthur.meal_db.ui.screens.mealDetail
+package com.arthur.meal_db.ui.screens.meals_by_category
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.MealDetailTasks
+import com.arthur.meal_db.data.repository.meals_by_category_repository.repositorys.MealsByCategoryTasks
 import com.arthur.meal_db.ui.NavArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,15 +14,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class MealDetailViewModel @Inject constructor(
-    private val mealDetailsTasks: MealDetailTasks,
+class MealsByCategoryViewModel @Inject constructor(
+    private val mealsByCategoryTasks: MealsByCategoryTasks,
     savedStateHandle: SavedStateHandle?
 ) : ViewModel() {
 
-    private val vmUiState =
-        MutableStateFlow(MealDetailUiState())
+    private val vmUiState = MutableStateFlow(MealsByCategoryUiState())
 
     val uiState = vmUiState.stateIn(
         viewModelScope,
@@ -30,24 +30,26 @@ class MealDetailViewModel @Inject constructor(
         vmUiState.value
     )
 
-    private var mealId: Long? = savedStateHandle?.get(NavArgs.MEAL_ID)
+    private var mealCategory: String? = savedStateHandle?.get(NavArgs.MEAL_CATEGORY)
 
     init {
-        mealId?.let { safeMealId ->
-            getMealDetail(safeMealId.toString())
-        } ?: kotlin.run {
-            vmUiState.update { it.copy(errorMsg = "Hubo un problema al consultar la información.") }
+        mealCategory?.let { safeMealCategory ->
+            vmUiState.update { it.copy(mealCategory = safeMealCategory) }
+            getCategoryList(safeMealCategory)
+        } ?: run {
+            vmUiState.update { it.copy(errorMessage = "Hubo un problema al consultar la información.") }
         }
     }
 
-    fun getMealDetail(mealId: String) {
+    private fun getCategoryList(category: String) {
         vmUiState.update { it.copy(loading = true) }
         viewModelScope.launch {
-            mealDetailsTasks.getMealDetail(mealId).collect { mealDetail ->
+            mealsByCategoryTasks.getMealCoverList(category).collect { mList ->
                 vmUiState.update {
                     it.copy(
                         loading = false,
-                        errorMsg = mealDetail.errorMessage
+                        errorMessage = mList.errorMessage,
+                        mealList = mList.mealCoverSimpleList
                     )
                 }
             }
@@ -55,7 +57,6 @@ class MealDetailViewModel @Inject constructor(
     }
 
     fun clearErrorMsg() {
-        vmUiState.update { it.copy(errorMsg = null) }
+        vmUiState.update { it.copy(errorMessage = null) }
     }
-
 }

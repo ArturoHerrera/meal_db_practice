@@ -7,13 +7,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.arthur.meal_db.R
+import com.arthur.meal_db.ui.theme.DarknesBlueGray
 
 @Composable
 fun NoRegisters(
@@ -33,9 +33,9 @@ fun NoRegisters(
                 modifier = Modifier.requiredSize(180.dp)
             )
             Text(
-                text = stringResource(id = R.string.no_categorys_issue),
+                text = stringResource(id = R.string.no_results_issue),
                 style = MaterialTheme.typography.body1,
-                color = Color.White,
+                color = DarknesBlueGray,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(vertical = 8.dp)
             )

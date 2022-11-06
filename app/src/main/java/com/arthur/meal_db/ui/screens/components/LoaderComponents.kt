@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.arthur.meal_db.ui.theme.MainGreen
+import com.arthur.meal_db.ui.theme.AplazoBlue
 
 @Composable
 fun ProgressBar(state: Boolean) {
@@ -27,7 +27,7 @@ fun ProgressBar(state: Boolean) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(16.dp),
-                    color = MainGreen,
+                    color = AplazoBlue,
                     backgroundColor = Color.Black.copy(alpha = 0.5f)
                 )
             }

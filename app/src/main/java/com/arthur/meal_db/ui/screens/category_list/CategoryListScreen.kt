@@ -1,17 +1,23 @@
-package com.arthur.meal_db.ui.screens.categoryList
+package com.arthur.meal_db.ui.screens.category_list
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.arthur.meal_db.ui.screens.components.*
+import com.arthur.meal_db.ui.screens.components.CategorListyHeader
+import com.arthur.meal_db.ui.screens.components.CategoryListUi
+import com.arthur.meal_db.ui.screens.components.ErrorAlert
+import com.arthur.meal_db.ui.screens.components.ProgressBar
+import com.arthur.meal_db.ui.theme.BackgroundWhite
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalAnimationApi
@@ -19,7 +25,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @Composable
 fun CategoryListScreen(
-    navigateToMealDetail: (Long) -> Unit,
+    navigateToMealsByCategory: (String) -> Unit,
     viewModel: CategoryListViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -28,7 +34,7 @@ fun CategoryListScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-
+            CategorListyHeader()
         }
     ) { paddingValues ->
         Box {
@@ -36,12 +42,20 @@ fun CategoryListScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .background(Color.Black.copy(alpha = 0.90f)),
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Color.White,
+                                BackgroundWhite,
+                                BackgroundWhite
+                            )
+                        )),
                 verticalArrangement = Arrangement.Top
             ) {
-                uiState.categoryList.forEach{
-                    Text(text = it.category ?: "Categoria")
-                }
+                CategoryListUi(
+                    categoryList = uiState.categoryList,
+                    onCategoryClicked = { category -> navigateToMealsByCategory(category) }
+                )
             }
         }
         ProgressBar(state = uiState.loading)

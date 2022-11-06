@@ -1,4 +1,4 @@
-package com.arthur.meal_db.ui.screens.categoryList
+package com.arthur.meal_db.ui.screens.category_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,7 +31,7 @@ class CategoryListViewModel @Inject constructor(
         getCategoryList()
     }
 
-    fun getCategoryList() {
+    private fun getCategoryList() {
         vmUiState.update { it.copy(loading = true) }
         viewModelScope.launch {
             categoryListTasks.getCategoryList().collect { mList ->
