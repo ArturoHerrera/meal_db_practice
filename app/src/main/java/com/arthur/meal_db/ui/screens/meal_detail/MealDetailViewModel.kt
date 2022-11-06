@@ -1,4 +1,4 @@
-package com.arthur.meal_db.ui.screens.mealDetail
+package com.arthur.meal_db.ui.screens.meal_detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -35,8 +35,8 @@ class MealDetailViewModel @Inject constructor(
     init {
         mealId?.let { safeMealId ->
             getMealDetail(safeMealId.toString())
-        } ?: kotlin.run {
-            vmUiState.update { it.copy(errorMsg = "Hubo un problema al consultar la información.") }
+        } ?: run {
+            vmUiState.update { it.copy(errorMessage = "Hubo un problema al consultar la información.") }
         }
     }
 
@@ -47,7 +47,7 @@ class MealDetailViewModel @Inject constructor(
                 vmUiState.update {
                     it.copy(
                         loading = false,
-                        errorMsg = mealDetail.errorMessage
+                        errorMessage = mealDetail.errorMessage
                     )
                 }
             }
@@ -55,7 +55,7 @@ class MealDetailViewModel @Inject constructor(
     }
 
     fun clearErrorMsg() {
-        vmUiState.update { it.copy(errorMsg = null) }
+        vmUiState.update { it.copy(errorMessage = null) }
     }
 
 }

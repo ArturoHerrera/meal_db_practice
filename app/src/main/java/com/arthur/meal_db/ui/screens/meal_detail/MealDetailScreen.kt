@@ -1,4 +1,4 @@
-package com.arthur.meal_db.ui.screens.mealDetail
+package com.arthur.meal_db.ui.screens.meal_detail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
@@ -25,7 +25,7 @@ fun MealDetailScreen(
         }
 
         ProgressBar(state = uiState.loading)
-        uiState.errorMsg?.let { safeErrorMsg ->
+        uiState.errorMessage?.let { safeErrorMsg ->
             ErrorAlert(
                 errorMsg = safeErrorMsg,
                 onDismiss = { viewModel.clearErrorMsg() }

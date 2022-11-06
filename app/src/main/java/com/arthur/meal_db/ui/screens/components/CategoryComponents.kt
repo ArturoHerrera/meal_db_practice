@@ -63,7 +63,7 @@ fun CategoryItem(
         elevation = 8.dp,
         shape = RoundedCornerShape(12.dp),
         backgroundColor = Color(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)),
-        onClick = { onCategoryClicked(category.idCategory ?: "-1") }
+        onClick = { onCategoryClicked(category.category ?: "-na") }
     ) {
         Column(
             //modifier = Modifier.background(Color.Black),

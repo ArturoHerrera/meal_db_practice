@@ -4,6 +4,8 @@ import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.Mea
 import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.MealDetailTasks
 import com.arthur.meal_db.data.repository.category_list_repository.repositorys.CategoryListRepository
 import com.arthur.meal_db.data.repository.category_list_repository.repositorys.CategoryListTasks
+import com.arthur.meal_db.data.repository.meals_by_category_repository.repositorys.MealsByCategoryRepository
+import com.arthur.meal_db.data.repository.meals_by_category_repository.repositorys.MealsByCategoryTasks
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,6 +19,11 @@ abstract class InterfaceTasksModule {
     abstract fun bindsCategoryListTasks(
         repository: CategoryListRepository
     ): CategoryListTasks
+
+    @Binds
+    abstract fun bindsMealsByCategoryTasks(
+        repository: MealsByCategoryRepository
+    ): MealsByCategoryTasks
 
 
     @Binds

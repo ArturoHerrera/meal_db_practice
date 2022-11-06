@@ -1,4 +1,4 @@
-package com.arthur.meal_db.ui.screens.categoryList
+package com.arthur.meal_db.ui.screens.category_list
 
 import com.arthur.meal_db.data.model.CategorySimple
 
