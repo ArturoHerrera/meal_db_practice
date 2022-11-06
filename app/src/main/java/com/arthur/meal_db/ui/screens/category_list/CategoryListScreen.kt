@@ -8,9 +8,11 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.meal_db.ui.screens.components.*
+import com.arthur.meal_db.ui.theme.BackgroundWhite
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalAnimationApi
@@ -27,7 +29,7 @@ fun CategoryListScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-
+            CategorListyHeader()
         }
     ) { paddingValues ->
         Box {
@@ -35,7 +37,14 @@ fun CategoryListScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .background(Color.Black.copy(alpha = 0.9f)),
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Color.White,
+                                BackgroundWhite,
+                                BackgroundWhite
+                            )
+                        )),
                 verticalArrangement = Arrangement.Top
             ) {
                 CategoryListUi(

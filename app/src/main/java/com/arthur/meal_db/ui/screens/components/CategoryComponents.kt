@@ -1,5 +1,6 @@
 package com.arthur.meal_db.ui.screens.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -11,8 +12,10 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -24,7 +27,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.arthur.meal_db.R
 import com.arthur.meal_db.data.model.CategorySimple
-import kotlin.random.Random
+import com.arthur.meal_db.ui.theme.DarknesBlueGray
+import com.arthur.meal_db.ui.theme.YellowDelicious
 
 
 @Composable
@@ -32,14 +36,13 @@ fun CategoryListUi(
     categoryList: List<CategorySimple>,
     onCategoryClicked: (String) -> Unit
 ) {
-    CategoryHeader()
     if (categoryList.isEmpty()) {
         NoRegisters()
     } else {
         LazyVerticalGrid(
             state = rememberLazyGridState(),
             columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(0.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
@@ -60,10 +63,11 @@ fun CategoryItem(
     onCategoryClicked: (String) -> Unit
 ) {
     Card(
-        elevation = 8.dp,
-        shape = RoundedCornerShape(12.dp),
-        backgroundColor = Color(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)),
-        onClick = { onCategoryClicked(category.category ?: "-na") }
+        elevation = 16.dp,
+        shape = RoundedCornerShape(24.dp),
+        backgroundColor = YellowDelicious,
+        onClick = { onCategoryClicked(category.category ?: "-na") },
+        modifier = Modifier.padding(vertical = 8.dp)
     ) {
         Column(
             //modifier = Modifier.background(Color.Black),
@@ -73,7 +77,7 @@ fun CategoryItem(
         ) {
             Box(
                 modifier = Modifier
-                    .height(150.dp)
+                    .height(140.dp)
                     .fillMaxWidth()
                     .fillMaxHeight(),
                 contentAlignment = Alignment.Center
@@ -85,22 +89,11 @@ fun CategoryItem(
                         .build(),
                     placeholder = painterResource(R.drawable.ic_no_image),
                     contentDescription = null,
-                    alignment = Alignment.Center,
-                    contentScale = ContentScale.Fit
-                )
-                Box(
+                    alignment = Alignment.TopCenter,
+                    filterQuality = FilterQuality.High,
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .matchParentSize()
-                        .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(
-                                    Color.Transparent,
-                                    Color.Transparent,
-                                    Color.Transparent,
-                                    Color.Black,
-                                )
-                            )
-                        )
+                        .fillMaxSize()
                 )
                 Box(
                     modifier = Modifier
@@ -108,7 +101,17 @@ fun CategoryItem(
                     contentAlignment = Alignment.BottomCenter
                 ) {
                     Column(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(
+                                shape = RoundedCornerShape(
+                                    topStart = 0.0f,
+                                    topEnd = 0.0f,
+                                    bottomEnd = 16.0f,
+                                    bottomStart = 16.0f
+                                )
+                            )
+                            .background(Color.White),
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
@@ -116,16 +119,15 @@ fun CategoryItem(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp),
-                            text = category.category ?: "--",
+                            text = category.category?.uppercase() ?: "--",
                             style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.ExtraBold,
+                            fontWeight = FontWeight.SemiBold,
                             lineHeight = 18.sp,
                             maxLines = 2,
                             fontSize = 18.sp,
                             textAlign = TextAlign.Center,
-                            color = Color.White
+                            color = DarknesBlueGray
                         )
-
                     }
                 }
             }
@@ -134,19 +136,33 @@ fun CategoryItem(
 }
 
 @Composable
-fun CategoryHeader(
-
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
+fun CategorListyHeader() {
+    //TODO Move to resource strings.
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White)
     ) {
         Text(
+            color = DarknesBlueGray,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            text = "Hello, \uD83D\uDE0B",
+            modifier = Modifier.fillMaxWidth().padding(top = 24.dp, start = 16.dp, end = 16.dp)
+        )
+        Text(
+            color = DarknesBlueGray,
             fontWeight = FontWeight.Bold,
-            fontSize = 22.sp,
-            text = "Categorias",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+            fontSize = 24.sp,
+            text = "Greetings!",
+            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp)
+        )
+        Text(
+            color = DarknesBlueGray,
+            fontWeight = FontWeight.Normal,
+            fontSize = 24.sp,
+            text = "What would you like to cook today? \uD83E\uDDD1\u200D\uD83C\uDF73",
+            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 24.dp)
         )
     }
 }
