@@ -3,8 +3,6 @@ package com.arthur.meal_db.ui.screens.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -31,7 +29,11 @@ import com.arthur.meal_db.ui.theme.DarknesBlueGray
 import de.charlex.compose.HtmlText
 
 @Composable
-fun MealDetailHeader(mealDetail: MealDetailSimple) {
+fun MealDetailHeader(
+    mealDetail: MealDetailSimple,
+    onYtVideo: (String) -> Unit,
+    onSource: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .background(Color.White)
@@ -96,8 +98,8 @@ fun MealDetailHeader(mealDetail: MealDetailSimple) {
                             modifier = Modifier
                                 .padding(end = 8.dp, bottom = 16.dp)
                                 .clickable {
-                                    if (mealDetail.urlYoutube.isNotBlank()) {
-
+                                    if (mealDetail.urlYoutube.isNotBlank() && mealDetail.urlYoutube != "--") {
+                                        onYtVideo(mealDetail.urlYoutube)
                                     }
                                 }
                                 .weight(1f),

@@ -3,4 +3,5 @@
 
     <!-- Issues -->
     <string name="no_results_issue">No se encontraron resultados</string>
+    <string name="video_intent_error">Hubo un problema al intentar acceder al video. Inténtalo mas tarde.</string>
 </resources>
