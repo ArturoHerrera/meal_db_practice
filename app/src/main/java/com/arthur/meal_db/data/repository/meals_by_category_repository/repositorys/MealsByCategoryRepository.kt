@@ -18,7 +18,7 @@ class MealsByCategoryRepository(
         emit(mealsByCategoryRemoteDS.getMealsByCategory(category))
     }.map { result ->
         if (result.succeeded) {
-            val mList = result.getDto().map { mMealCover ->
+            val mList = result.getDto()?.map { mMealCover ->
                 MealCoverSimple.Builder()
                     .setMealId(mMealCover.idMeal)
                     .setMealImageUrl(mMealCover.strMealThumb)
@@ -27,7 +27,7 @@ class MealsByCategoryRepository(
             }
             MealCoverList(
                 errorMessage = null,
-                mealCoverSimpleList = mList
+                mealCoverSimpleList = mList ?: emptyList()
             )
         } else {
             MealCoverList(
@@ -41,5 +41,5 @@ class MealsByCategoryRepository(
 }
 
 interface MealsByCategoryRemoteDataSource {
-    suspend fun getMealsByCategory(category: String): ServiceResult<List<MealCoverDto>>
+    suspend fun getMealsByCategory(category: String): ServiceResult<List<MealCoverDto>?>
 }

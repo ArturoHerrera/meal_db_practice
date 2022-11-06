@@ -29,6 +29,21 @@ class CategoryListViewModel @Inject constructor(
 
     init {
         getCategoryList()
+        getRandomMeal()
+    }
+
+    fun getRandomMeal() {
+        viewModelScope.launch {
+            categoryListTasks.getRandomMeal().collect { mList ->
+                vmUiState.update {
+                    it.copy(
+                        loading = false,
+                        errorMessage = mList.errorMessage,
+                        randomMealList = mList.mealCoverSimpleList
+                    )
+                }
+            }
+        }
     }
 
     private fun getCategoryList() {
@@ -49,5 +64,32 @@ class CategoryListViewModel @Inject constructor(
 
     fun clearErrorMsg() {
         vmUiState.update { it.copy(errorMessage = null) }
+    }
+
+    fun setActiveSearchState(state: Boolean) {
+        vmUiState.update { it.copy(activeSearch = state) }
+    }
+
+    fun clearQuery() {
+        vmUiState.update { it.copy(query = "") }
+    }
+
+    fun clearFinderResult() {
+        vmUiState.update { it.copy(mealList = emptyList()) }
+    }
+
+    fun searchMeal(query: String) {
+        vmUiState.update { it.copy(loading = true) }
+        viewModelScope.launch {
+            categoryListTasks.searchMeal(query).collect { mList ->
+                vmUiState.update {
+                    it.copy(
+                        loading = false,
+                        errorMessage = mList.errorMessage,
+                        mealList = mList.mealCoverSimpleList
+                    )
+                }
+            }
+        }
     }
 }

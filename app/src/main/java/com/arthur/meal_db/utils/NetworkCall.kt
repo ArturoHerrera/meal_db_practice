@@ -14,8 +14,10 @@ suspend fun <T> networkCall(
         ServiceResult.Error(message = "Revisa tu conexión a internet.")
     } catch (e: HttpException) {
         ServiceResult.Error(message = HttpError.fromCode(e.code()).errorMsg)
-    } catch (e: UnsupportedTemporalTypeException){
+    } catch (e: UnsupportedTemporalTypeException) {
         ServiceResult.Error(message = "Campo de fecha inválido: " + e.message!!)
+    } catch (e: java.lang.ClassCastException) {
+        ServiceResult.Error(message = "Problemas al castear la respuesta: " + e.message!!)
     } catch (e: Exception) {
         e.printStackTrace()
         ServiceResult.Error(message = "Ocurrio un problema inesperado")
@@ -27,7 +29,10 @@ suspend fun <T> networkCall(
         ServiceResult.Error(message = "Revisa tu conexión a internet.")
     } catch (e: HttpException) {
         ServiceResult.Error(message = HttpError.fromCode(e.code()).errorMsg)
+    } catch (e: ClassCastException) {
+        ServiceResult.Error(message = "Problemas al castear la respuesta: " + e.message!!)
     } catch (e: Exception) {
+        e.printStackTrace()
         ServiceResult.Error(message = "Ocurrio un problema inesperado")
     }
 }

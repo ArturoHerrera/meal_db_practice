@@ -3,7 +3,7 @@ package com.arthur.meal_db.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class MealCoverResponseDto(
-    @SerializedName("meals") var mealsCoverList: List<MealCoverDto> = listOf()
+    @SerializedName("meals") var mealsCoverList: List<MealCoverDto>? = listOf()
 )
 
 data class MealCoverDto(

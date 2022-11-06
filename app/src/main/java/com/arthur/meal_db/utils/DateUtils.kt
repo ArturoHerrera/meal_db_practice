@@ -21,7 +21,7 @@ object EmojiUtils {
             "chicken" -> "\uD83C\uDF57"
             "dessert" -> "\uD83E\uDD67"
             "lamb" -> "\uD83D\uDC11"
-            "miscellaneous" -> ""
+            "miscellaneous" -> "\uD83E\uDED5"
             "pasta" -> "\uD83C\uDF5D"
             "pork" -> "\uD83D\uDC16"
             "seafood" -> listOf("\uD83C\uDF64", "\uD83D\uDC19").shuffled().first()
