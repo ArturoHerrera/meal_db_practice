@@ -1,6 +1,6 @@
 # Android-template
 
-Practica consumiento la api pública de https://www.themealdb.com/api.php.
+Práctica consumiento la api pública de https://www.themealdb.com/api.php.
 
 
 
