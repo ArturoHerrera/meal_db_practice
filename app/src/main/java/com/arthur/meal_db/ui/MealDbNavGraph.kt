@@ -45,6 +45,7 @@ fun MealDbNavGraph(
         ) {
             CategoryListScreen(
                 navigateToMealsByCategory = actions.navigateToMealsByCategory,
+                navigateToMealDetail = actions.navigateToMealDetail
             )
         }
         composable(

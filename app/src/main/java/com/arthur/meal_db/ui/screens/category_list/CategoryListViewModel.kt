@@ -29,6 +29,21 @@ class CategoryListViewModel @Inject constructor(
 
     init {
         getCategoryList()
+        getRandomMeal()
+    }
+
+    fun getRandomMeal() {
+        viewModelScope.launch {
+            categoryListTasks.getRandomMeal().collect { mList ->
+                vmUiState.update {
+                    it.copy(
+                        loading = false,
+                        errorMessage = mList.errorMessage,
+                        randomMealList = mList.mealCoverSimpleList
+                    )
+                }
+            }
+        }
     }
 
     private fun getCategoryList() {

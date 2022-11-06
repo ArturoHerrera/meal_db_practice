@@ -14,6 +14,10 @@ interface MealDbApi {
     suspend fun getCategoryList(
     ): Response<CategoryResponseDto>
 
+    @GET("/api/json/v1/1/random.php")
+    suspend fun getRandomMeal(
+    ): Response<MealCoverResponseDto>
+
     @GET("/api/json/v1/1/lookup.php")
     suspend fun getMealDetail(
         @Query("i") mealId: String = "Z"
