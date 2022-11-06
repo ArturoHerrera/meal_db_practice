@@ -32,6 +32,8 @@ El proyecto esta construido utilizando:
 
 
 
+
+
 Ref:
 
 https://developer.android.com/topic/architecture/data-layer
