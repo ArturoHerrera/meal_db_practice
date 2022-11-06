@@ -6,10 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -32,10 +29,30 @@ fun CategoryListScreen(
 
     LaunchedEffect(Unit) { viewModel.getRandomMeal() }
 
+    var hideKeyboard by remember { mutableStateOf(false) }
+
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            CategorListyHeader()
+            if(uiState.activeSearch){
+                SearchBar(
+                    hideKeyboard = hideKeyboard,
+                    onFocusClear = { hideKeyboard = false },
+                    onBack = {
+                        viewModel.clearQuery()
+                        viewModel.clearFinderResult()
+                        viewModel.setActiveSearchState(false)
+                        //viewModel.getTvShowList()
+                    },
+                    onWriteQuery = { query -> viewModel.searchMeal(query) }
+                )
+            } else {
+                CategorListyHeader(
+                    onSearchClicked = {
+                        viewModel.setActiveSearchState(true)
+                    }
+                )
+            }
         }
     ) { paddingValues ->
         Box {
@@ -54,14 +71,21 @@ fun CategoryListScreen(
                     ),
                 verticalArrangement = Arrangement.Top
             ) {
-                SurpriseMe(
-                    mealList = uiState.randomMealList,
-                    onMealClicked = { navigateToMealDetail(it) }
-                )
-                CategoryListUi(
-                    categoryList = uiState.categoryList,
-                    onCategoryClicked = { category -> navigateToMealsByCategory(category) }
-                )
+                if(uiState.activeSearch){
+                    MealByCategoryList(
+                        mealList = uiState.mealList,
+                        onMealClicked = { navigateToMealDetail(it) }
+                    )
+                } else {
+                    SurpriseMe(
+                        mealList = uiState.randomMealList,
+                        onMealClicked = { navigateToMealDetail(it) }
+                    )
+                    CategoryListUi(
+                        categoryList = uiState.categoryList,
+                        onCategoryClicked = { category -> navigateToMealsByCategory(category) }
+                    )
+                }
             }
         }
         ProgressBar(state = uiState.loading)

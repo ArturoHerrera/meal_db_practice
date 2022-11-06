@@ -46,7 +46,7 @@ class CategoryListRepository(
         emit(mealCategoryListRemoteDS.getRandoMeal())
     }.map { result ->
         if (result.succeeded) {
-            val mList = result.getDto().map { mMealCover ->
+            val mList = result.getDto()?.map { mMealCover ->
                 MealCoverSimple.Builder()
                     .setMealId(mMealCover.idMeal)
                     .setMealImageUrl(mMealCover.strMealThumb)
@@ -55,7 +55,7 @@ class CategoryListRepository(
             }
             MealCoverList(
                 errorMessage = null,
-                mealCoverSimpleList = mList
+                mealCoverSimpleList = mList ?: emptyList()
             )
         } else {
             MealCoverList(
@@ -66,9 +66,34 @@ class CategoryListRepository(
     }.catch { e -> e.printStackTrace() }
         .flowOn(Dispatchers.IO)
 
+    override suspend fun searchMeal(query: String): Flow<MealCoverList> = flow {
+        emit(mealCategoryListRemoteDS.searchMeal(query))
+    }.map { result ->
+        if (result.succeeded) {
+            val mList = result.getDto()?.map { mMealCover ->
+                MealCoverSimple.Builder()
+                    .setMealId(mMealCover.idMeal)
+                    .setMealImageUrl(mMealCover.strMealThumb)
+                    .setMealName(mMealCover.strMeal)
+                    .build()
+            }
+            MealCoverList(
+                errorMessage = null,
+                mealCoverSimpleList = mList ?: emptyList()
+            )
+        } else {
+            MealCoverList(
+                errorMessage = result.getMessage() + "---",
+                mealCoverSimpleList = listOf()
+            )
+        }
+    }.catch { e -> e.printStackTrace() }
+        .flowOn(Dispatchers.IO)
+
 }
 
 interface MealCategoryListRemoteDataSource {
     suspend fun getCategoryList(): ServiceResult<CategoryResponseDto>
-    suspend fun getRandoMeal(): ServiceResult<List<MealCoverDto>>
+    suspend fun getRandoMeal(): ServiceResult<List<MealCoverDto>?>
+    suspend fun searchMeal(query: String): ServiceResult<List<MealCoverDto>?>
 }

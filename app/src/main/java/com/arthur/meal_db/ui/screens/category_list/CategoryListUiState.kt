@@ -6,6 +6,9 @@ import com.arthur.meal_db.data.model.MealCoverSimple
 data class CategoryListUiState(
     val loading: Boolean = false,
     val errorMessage: String? = null,
+    val activeSearch: Boolean = false,
     val categoryList: List<CategorySimple> = emptyList(),
-    val randomMealList: List<MealCoverSimple> = emptyList()
+    val randomMealList: List<MealCoverSimple> = emptyList(),
+    val mealList: List<MealCoverSimple> = emptyList(),
+    val query: String = ""
 )

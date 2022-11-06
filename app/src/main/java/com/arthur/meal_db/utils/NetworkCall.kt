@@ -28,6 +28,7 @@ suspend fun <T> networkCall(
     } catch (e: HttpException) {
         ServiceResult.Error(message = HttpError.fromCode(e.code()).errorMsg)
     } catch (e: Exception) {
+        e.printStackTrace()
         ServiceResult.Error(message = "Ocurrio un problema inesperado")
     }
 }

@@ -17,4 +17,6 @@ interface CategoryListTasks {
 
     suspend fun getRandomMeal(): Flow<MealCoverList>
 
+    suspend fun searchMeal(query: String): Flow<MealCoverList>
+
 }

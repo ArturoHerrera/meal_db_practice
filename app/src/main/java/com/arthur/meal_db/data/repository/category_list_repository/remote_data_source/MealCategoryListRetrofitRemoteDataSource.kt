@@ -16,9 +16,14 @@ class MealCategoryListRetrofitRemoteDataSource(
             mealDbApi.getCategoryList().body()!!
         }
 
-    override suspend fun getRandoMeal(): ServiceResult<List<MealCoverDto>> =
+    override suspend fun getRandoMeal(): ServiceResult<List<MealCoverDto>?> =
         networkCall {
             mealDbApi.getRandomMeal().body()!!.mealsCoverList
+        }
+
+    override suspend fun searchMeal(query: String): ServiceResult<List<MealCoverDto>?> =
+        networkCall {
+            mealDbApi.getQueryResults(query).body()!!.mealsCoverList
         }
 
 }

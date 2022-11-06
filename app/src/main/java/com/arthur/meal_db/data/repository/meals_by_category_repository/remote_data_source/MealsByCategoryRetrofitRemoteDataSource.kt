@@ -10,7 +10,7 @@ class MealsByCategoryRetrofitRemoteDataSource(
     private val mealDbApi: MealDbApi
 ) : MealsByCategoryRemoteDataSource {
 
-    override suspend fun getMealsByCategory(category: String): ServiceResult<List<MealCoverDto>> =
+    override suspend fun getMealsByCategory(category: String): ServiceResult<List<MealCoverDto>?> =
         networkCall {
             mealDbApi.getMealsByCategory(category).body()!!.mealsCoverList
         }

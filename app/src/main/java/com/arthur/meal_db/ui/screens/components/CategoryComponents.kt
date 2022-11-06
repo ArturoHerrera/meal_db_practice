@@ -1,25 +1,36 @@
 package com.arthur.meal_db.ui.screens.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowCircleRight
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,7 +42,6 @@ import com.arthur.meal_db.data.model.MealCoverSimple
 import com.arthur.meal_db.ui.theme.DarknesBlueGray
 import com.arthur.meal_db.ui.theme.YellowDelicious
 import com.arthur.meal_db.utils.EmojiUtils
-
 
 @Composable
 fun CategoryListUi(
@@ -150,7 +160,9 @@ fun CategoryItem(
 }
 
 @Composable
-fun CategorListyHeader() {
+fun CategorListyHeader(
+    onSearchClicked: () -> Unit
+) {
     //TODO Move to resource strings.
     Column(
         modifier = Modifier
@@ -166,15 +178,25 @@ fun CategorListyHeader() {
                 .fillMaxWidth()
                 .padding(top = 24.dp, start = 16.dp, end = 16.dp)
         )
-        Text(
-            color = DarknesBlueGray,
-            fontWeight = FontWeight.Bold,
-            fontSize = 24.sp,
-            text = "Greetings!",
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp)
-        )
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                color = DarknesBlueGray,
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
+                text = "Greetings!"
+            )
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = "Botón para buscar",
+                tint = DarknesBlueGray,
+                modifier = Modifier.clickable { onSearchClicked() }
+            )
+        }
         Text(
             color = DarknesBlueGray,
             fontWeight = FontWeight.Normal,
@@ -200,7 +222,7 @@ fun SurpriseMe(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 8.dp, start = 16.dp, end = 16.dp),
-            text = "Surprise me:",
+            text = "Surprise recipe:",
             style = MaterialTheme.typography.body1,
             fontWeight = FontWeight.SemiBold,
             lineHeight = 18.sp,
@@ -228,7 +250,9 @@ fun MealRandomItem(
     Card(
         elevation = 16.dp,
         shape = RoundedCornerShape(24.dp),
-        modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
         backgroundColor = Color.White,
         onClick = { onMealClicked(meal.mealId ?: "-1") }
     ) {
@@ -286,5 +310,100 @@ fun MealRandomItem(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun SearchBar(
+    onWriteQuery: (String) -> Unit,
+    onFocusClear: () -> Unit,
+    onBack: () -> Unit,
+    hideKeyboard: Boolean = false
+) {
+    var query by remember { mutableStateOf("") }
+    var isHintDisplayed by remember { mutableStateOf(false) }
+    val focusManager = LocalFocusManager.current
+    val focusRequester = remember { FocusRequester() }
+
+    Row(
+        modifier = Modifier
+            .background(Color.White)
+            .fillMaxWidth()
+    ) {
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester = focusRequester)
+                .onFocusChanged { isHintDisplayed = it.hasFocus != true },
+            value = query,
+            onValueChange = { query = it },
+            label = {
+                Text(
+                    text = "Buscar",
+                    color = Color.Black
+                )
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.White,
+                cursorColor = DarknesBlueGray,
+                textColor = DarknesBlueGray,
+                disabledLabelColor = Color.White,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            placeholder = { Text("") },
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+            keyboardActions = KeyboardActions(onSearch = {
+                focusManager.clearFocus()
+                onWriteQuery(query)
+            }),
+            maxLines = 1,
+            singleLine = true,
+            leadingIcon = {
+                IconButton(onClick = {
+                    if (query.isNotEmpty()) {
+                        query = ""
+                    } else {
+                        focusManager.clearFocus()
+                        onBack()
+                    }
+                }) {
+                    if (query.isNotEmpty()) {
+                        Icon(
+                            imageVector = Icons.Filled.Clear,
+                            contentDescription = "Botón para regresar",
+                            tint = DarknesBlueGray
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Botón para regresar",
+                            tint = DarknesBlueGray
+                        )
+                    }
+                }
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    focusManager.clearFocus()
+                    onWriteQuery(query)
+                }) {
+                    Icon(
+                        imageVector = Icons.Filled.Search,
+                        contentDescription = "Botón para buscar",
+                        tint = DarknesBlueGray
+                    )
+                }
+            }
+        )
+    }
+
+    if (hideKeyboard) {
+        focusManager.clearFocus()
+        onFocusClear()
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
