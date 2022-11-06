@@ -1,10 +1,5 @@
 package com.arthur.meal_db.ui.screens.meal_detail
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,11 +11,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.meal_db.ui.screens.components.*
 import com.arthur.meal_db.ui.theme.BackgroundWhite
-import com.arthur.meal_db.R
 import com.arthur.meal_db.utils.IntentUtils.openExternalUrl
 import com.arthur.meal_db.utils.IntentUtils.openYtVideo
 
