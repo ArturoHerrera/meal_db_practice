@@ -21,6 +21,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.meal_db.ui.screens.components.*
 import com.arthur.meal_db.ui.theme.BackgroundWhite
 import com.arthur.meal_db.R
+import com.arthur.meal_db.utils.IntentUtils.openExternalUrl
+import com.arthur.meal_db.utils.IntentUtils.openYtVideo
 
 @Composable
 fun MealDetailScreen(
@@ -48,21 +50,16 @@ fun MealDetailScreen(
                     MealDetailHeader(
                         mealDetail = safeDetail,
                         onYtVideo = { ytVideoLink ->
-                            try {
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(ytVideoLink))
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                intent.setPackage("com.google.android.youtube")
-                                ContextCompat.startActivity(context, intent, null)
-                            } catch (e: ActivityNotFoundException) {
-                                ContextCompat.startActivity(context, Intent(Intent.ACTION_VIEW, Uri.parse(ytVideoLink)), null)
-                            } catch (e: PackageManager.NameNotFoundException) {
-                                ContextCompat.startActivity(context, Intent(Intent.ACTION_VIEW, Uri.parse(ytVideoLink)), null)
-                            } catch (e: Exception) {
-                                Toast.makeText(context, context.getString(R.string.video_intent_error), Toast.LENGTH_LONG).show()
-                            }
+                            openYtVideo(
+                                ytVideoLink = ytVideoLink,
+                                context = context
+                            )
                         },
-                        onSource = {
-
+                        onSource = {url ->
+                            openExternalUrl(
+                                externalUrl = url,
+                                context = context
+                            )
                         }
                     )
                     if (safeDetail.ingredientList.isNotEmpty()) {

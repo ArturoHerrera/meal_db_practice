@@ -144,38 +144,37 @@ fun MealDetailHeader(
                                     color = Color.White
                                 )
                             }
-
-                            Row(
-                                modifier = Modifier
-                                    .padding(end = 8.dp, bottom = 16.dp)
-                                    .clickable {
-                                        if (mealDetail.source.isNotBlank()) {
-
-                                        }
-                                    }
-                                    .weight(1f),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.End
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .padding(horizontal = 8.dp),
-                                    text = "source",
-                                    style = MaterialTheme.typography.body1,
-                                    fontWeight = FontWeight.Light,
-                                    lineHeight = 18.sp,
-                                    fontSize = 12.sp,
-                                    textAlign = TextAlign.Center,
-                                    color = Color.White
-                                )
-                                Icon(
-                                    imageVector = Icons.Filled.Source,
-                                    contentDescription = "Botón para visitar el sitio del show.",
-                                    tint = Color.White
-                                )
-                            }
                         }
 
+                        Row(
+                            modifier = Modifier
+                                .padding(end = 8.dp, bottom = 16.dp)
+                                .clickable {
+                                    if (mealDetail.source.isNotBlank() && mealDetail.source != "--") {
+                                        onSource(mealDetail.source)
+                                    }
+                                }
+                                .weight(1f),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.End
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(horizontal = 8.dp),
+                                text = "source",
+                                style = MaterialTheme.typography.body1,
+                                fontWeight = FontWeight.Light,
+                                lineHeight = 18.sp,
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center,
+                                color = Color.White
+                            )
+                            Icon(
+                                imageVector = Icons.Filled.Source,
+                                contentDescription = "Botón para visitar el sitio del show.",
+                                tint = Color.White
+                            )
+                        }
                     }
                 }
             }
