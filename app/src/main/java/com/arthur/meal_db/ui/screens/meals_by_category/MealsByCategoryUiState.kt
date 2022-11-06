@@ -5,5 +5,6 @@ import com.arthur.meal_db.data.model.MealCoverSimple
 data class MealsByCategoryUiState(
     val loading: Boolean = false,
     val errorMessage: String? = null,
+    val mealCategory: String? = null,
     val mealList: List<MealCoverSimple> = emptyList()
 )

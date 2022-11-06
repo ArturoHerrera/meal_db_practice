@@ -34,6 +34,7 @@ class MealsByCategoryViewModel @Inject constructor(
 
     init {
         mealCategory?.let { safeMealCategory ->
+            vmUiState.update { it.copy(mealCategory = safeMealCategory) }
             getCategoryList(safeMealCategory)
         } ?: run {
             vmUiState.update { it.copy(errorMessage = "Hubo un problema al consultar la información.") }

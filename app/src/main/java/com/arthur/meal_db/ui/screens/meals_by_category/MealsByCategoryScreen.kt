@@ -38,7 +38,7 @@ fun MealsByCategoryScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            MealsByCategoryListyHeader()
+            MealsByCategoryListyHeader(uiState.mealCategory)
         }
     ) { paddingValues ->
         Box {

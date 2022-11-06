@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,7 +27,9 @@ import coil.request.ImageRequest
 import com.arthur.meal_db.R
 import com.arthur.meal_db.data.model.CategorySimple
 import com.arthur.meal_db.ui.theme.DarknesBlueGray
+import com.arthur.meal_db.ui.theme.Slab
 import com.arthur.meal_db.ui.theme.YellowDelicious
+import com.arthur.meal_db.utils.EmojiUtils
 
 
 @Composable
@@ -157,7 +161,7 @@ fun CategorListyHeader() {
             color = DarknesBlueGray,
             fontWeight = FontWeight.Normal,
             fontSize = 24.sp,
-            text = "What would you like to cook today? \uD83E\uDDD1\u200D\uD83C\uDF73",
+            text = "What would you like to cook today? ${EmojiUtils.randomCook()}",
             modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 24.dp)
         )
     }
