@@ -30,11 +30,11 @@ class MealDetailViewModel @Inject constructor(
         vmUiState.value
     )
 
-    private var mealId: Long? = savedStateHandle?.get(NavArgs.MEAL_ID)
+    private var mealId: String? = savedStateHandle?.get(NavArgs.MEAL_ID)
 
     init {
         mealId?.let { safeMealId ->
-            getMealDetail(safeMealId.toString())
+            getMealDetail(safeMealId)
         } ?: run {
             vmUiState.update { it.copy(errorMessage = "Hubo un problema al consultar la información.") }
         }
@@ -43,11 +43,12 @@ class MealDetailViewModel @Inject constructor(
     fun getMealDetail(mealId: String) {
         vmUiState.update { it.copy(loading = true) }
         viewModelScope.launch {
-            mealDetailsTasks.getMealDetail(mealId).collect { mealDetail ->
+            mealDetailsTasks.getMealDetail(mealId).collect { result ->
                 vmUiState.update {
                     it.copy(
                         loading = false,
-                        errorMessage = mealDetail.errorMessage
+                        errorMessage = result.errorMessage,
+                        mealDetail = result.mealDetail
                     )
                 }
             }

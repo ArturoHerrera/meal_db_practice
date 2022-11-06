@@ -58,10 +58,10 @@ fun MealDbNavGraph(
         }
         composable(
             route = Destinations.MEAL_DETAIL_SCREEN + "/{${NavArgs.MEAL_ID}}",
-            arguments = listOf(navArgument(NavArgs.MEAL_ID) { type = NavType.LongType })
+            arguments = listOf(navArgument(NavArgs.MEAL_ID) { type = NavType.StringType })
         ) {
             MealDetailScreen(
-                navigateToView = actions.upPress
+                upPress = actions.upPress
             )
         }
     }
@@ -71,7 +71,7 @@ class MainActions(navController: NavHostController) {
     val navigateToMealsByCategory: (String) -> Unit = { mealCategory ->
         navController.navigate(Destinations.MEAL_BY_CATEGORY_SCREEN + "/$mealCategory")
     }
-    val navigateToMealDetail: (Long) -> Unit = { mealId ->
+    val navigateToMealDetail: (String) -> Unit = { mealId ->
         navController.navigate(Destinations.MEAL_DETAIL_SCREEN + "/$mealId")
     }
     val upPress: () -> Unit = {

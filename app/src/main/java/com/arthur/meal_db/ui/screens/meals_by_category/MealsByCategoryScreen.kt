@@ -24,7 +24,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @Composable
 fun MealsByCategoryScreen(
     upPress: () -> Unit,
-    navigateToMealDetail: (Long) -> Unit,
+    navigateToMealDetail: (String) -> Unit,
     viewModel: MealsByCategoryViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -46,7 +46,7 @@ fun MealsByCategoryScreen(
             ) {
                 MealByCategoryList(
                     mealList = uiState.mealList,
-                    onMealClicked = {}
+                    onMealClicked = { navigateToMealDetail(it) }
                 )
             }
         }

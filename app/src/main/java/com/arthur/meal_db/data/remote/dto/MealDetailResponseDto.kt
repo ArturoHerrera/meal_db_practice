@@ -66,84 +66,84 @@ data class MealsDto(
 
         val mList = arrayListOf<String>()
 
-        if (!strIngredient1.isNullOrEmpty() && !strMeasure1.isNullOrEmpty()) {
-            mList.add("$strMeasure1 $strMeasure1")
+        if (!strMeasure1.isNullOrEmpty() && !strIngredient1.isNullOrEmpty()) {
+            mList.add("$strMeasure1 $strIngredient1")
         }
 
-        if (!strIngredient2.isNullOrEmpty() && !strMeasure2.isNullOrEmpty()) {
-            mList.add("$strIngredient2 $strMeasure2")
+        if (!strMeasure2.isNullOrEmpty() && !strIngredient2.isNullOrEmpty()) {
+            mList.add("$strMeasure2 $strIngredient2")
         }
 
-        if (!strIngredient3.isNullOrEmpty() && !strMeasure3.isNullOrEmpty()) {
-            mList.add("$strIngredient3 $strMeasure3")
+        if (!strMeasure3.isNullOrEmpty() && !strIngredient3.isNullOrEmpty()) {
+            mList.add("$strMeasure3 $strIngredient3")
         }
 
-        if (!strIngredient4.isNullOrEmpty() && !strMeasure4.isNullOrEmpty()) {
-            mList.add("$strIngredient4 $strMeasure4")
+        if (!strMeasure4.isNullOrEmpty() && !strIngredient4.isNullOrEmpty()) {
+            mList.add("$strMeasure4 $strIngredient4")
         }
 
-        if (!strIngredient5.isNullOrEmpty() && !strMeasure5.isNullOrEmpty()) {
-            mList.add("$strIngredient5 $strMeasure5")
+        if (!strMeasure5.isNullOrEmpty() && !strIngredient5.isNullOrEmpty()) {
+            mList.add("$strMeasure5 $strIngredient5")
         }
 
-        if (!strIngredient6.isNullOrEmpty() && !strMeasure6.isNullOrEmpty()) {
-            mList.add("$strIngredient6 $strMeasure6")
+        if (!strMeasure6.isNullOrEmpty() && !strIngredient6.isNullOrEmpty()) {
+            mList.add("$strMeasure6 $strIngredient6")
         }
 
-        if (!strIngredient7.isNullOrEmpty() && !strMeasure7.isNullOrEmpty()) {
-            mList.add("$strIngredient7 $strMeasure7")
+        if (!strMeasure7.isNullOrEmpty() && !strIngredient7.isNullOrEmpty()) {
+            mList.add("$strMeasure7 $strIngredient7")
         }
 
-        if (!strIngredient8.isNullOrEmpty() && !strMeasure8.isNullOrEmpty()) {
-            mList.add("$strIngredient8 $strMeasure8")
+        if (!strMeasure8.isNullOrEmpty() && !strIngredient8.isNullOrEmpty()) {
+            mList.add("$strMeasure8 $strIngredient8")
         }
 
-        if (!strIngredient9.isNullOrEmpty() && !strMeasure9.isNullOrEmpty()) {
-            mList.add("$strIngredient9 $strMeasure9")
+        if (!strMeasure9.isNullOrEmpty() && !strIngredient9.isNullOrEmpty()) {
+            mList.add("$strMeasure9 $strIngredient9")
         }
 
-        if (!strIngredient10.isNullOrEmpty() && !strMeasure10.isNullOrEmpty()) {
-            mList.add("$strIngredient10 $strMeasure10")
+        if (!strMeasure10.isNullOrEmpty() && !strIngredient10.isNullOrEmpty()) {
+            mList.add("$strMeasure10 $strIngredient10")
         }
 
-        if (!strIngredient11.isNullOrEmpty() && !strMeasure11.isNullOrEmpty()) {
-            mList.add("$strIngredient11 $strMeasure11")
+        if (!strMeasure11.isNullOrEmpty() && !strIngredient11.isNullOrEmpty()) {
+            mList.add("$strMeasure11 $strIngredient11")
         }
 
-        if (!strIngredient12.isNullOrEmpty() && !strMeasure12.isNullOrEmpty()) {
-            mList.add("$strIngredient12 $strMeasure12")
+        if (!strMeasure12.isNullOrEmpty() && !strIngredient12.isNullOrEmpty()) {
+            mList.add("$strMeasure12 $strIngredient12")
         }
 
-        if (!strIngredient13.isNullOrEmpty() && !strMeasure13.isNullOrEmpty()) {
-            mList.add("$strIngredient13 $strMeasure13")
+        if (!strMeasure13.isNullOrEmpty() && !strIngredient13.isNullOrEmpty()) {
+            mList.add("$strMeasure13 $strIngredient13")
         }
 
-        if (!strIngredient14.isNullOrEmpty() && !strMeasure14.isNullOrEmpty()) {
-            mList.add("$strIngredient14 $strMeasure14")
+        if (!strMeasure14.isNullOrEmpty() && !strIngredient14.isNullOrEmpty()) {
+            mList.add("$strMeasure14 $strIngredient14")
         }
 
-        if (!strIngredient15.isNullOrEmpty() && !strMeasure15.isNullOrEmpty()) {
-            mList.add("$strIngredient15 $strMeasure15")
+        if (!strMeasure15.isNullOrEmpty() && !strIngredient15.isNullOrEmpty()) {
+            mList.add("$strMeasure15 $strIngredient15")
         }
 
-        if (!strIngredient16.isNullOrEmpty() && !strMeasure16.isNullOrEmpty()) {
-            mList.add("$strIngredient16 $strMeasure16")
+        if (!strMeasure16.isNullOrEmpty() && !strIngredient16.isNullOrEmpty()) {
+            mList.add("$strMeasure16 $strIngredient16")
         }
 
-        if (!strIngredient17.isNullOrEmpty() && !strMeasure17.isNullOrEmpty()) {
-            mList.add("$strIngredient17 $strMeasure17")
+        if (!strMeasure17.isNullOrEmpty() && !strIngredient17.isNullOrEmpty()) {
+            mList.add("$strMeasure17 $strIngredient17")
         }
 
-        if (!strIngredient18.isNullOrEmpty() && !strMeasure18.isNullOrEmpty()) {
-            mList.add("$strIngredient18 $strMeasure18")
+        if (!strMeasure18.isNullOrEmpty() && !strIngredient18.isNullOrEmpty()) {
+            mList.add("$strMeasure18 $strIngredient18")
         }
 
-        if (!strIngredient19.isNullOrEmpty() && !strMeasure19.isNullOrEmpty()) {
-            mList.add("$strIngredient19 $strMeasure19")
+        if (!strMeasure19.isNullOrEmpty() && !strIngredient19.isNullOrEmpty()) {
+            mList.add("$strMeasure19 $strIngredient19")
         }
 
-        if (!strIngredient20.isNullOrEmpty() && !strMeasure20.isNullOrEmpty()) {
-            mList.add("$strIngredient20 $strMeasure20")
+        if (!strMeasure20.isNullOrEmpty() && !strIngredient20.isNullOrEmpty()) {
+            mList.add("$strMeasure20 $strIngredient20")
         }
 
         return mList

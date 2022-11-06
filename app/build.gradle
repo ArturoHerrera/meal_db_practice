@@ -85,9 +85,6 @@ dependencies {
     //Interceptor
     implementation "com.localebro:okhttpprofiler:$okhttp_profiler_version"
 
-    //Rating compose component
-    implementation "com.github.a914-gowtham:compose-ratingbar:$ratingbar_version"
-
     //Compote text html
     implementation "de.charlex.compose:html-text:$compose_html_text_version"
 
