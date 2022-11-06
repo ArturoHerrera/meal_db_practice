@@ -1,9 +1,9 @@
 package com.arthur.meal_db.di
 
-import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.MealDetailRepository
-import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.MealDetailTasks
 import com.arthur.meal_db.data.repository.category_list_repository.repositorys.CategoryListRepository
 import com.arthur.meal_db.data.repository.category_list_repository.repositorys.CategoryListTasks
+import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.MealDetailRepository
+import com.arthur.meal_db.data.repository.meal_detail_repository.repositorys.MealDetailTasks
 import com.arthur.meal_db.data.repository.meals_by_category_repository.repositorys.MealsByCategoryRepository
 import com.arthur.meal_db.data.repository.meals_by_category_repository.repositorys.MealsByCategoryTasks
 import dagger.Binds

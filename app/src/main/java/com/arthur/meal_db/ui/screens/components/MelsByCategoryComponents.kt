@@ -11,8 +11,6 @@ import androidx.compose.material.icons.filled.ArrowCircleRight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -22,13 +20,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.request.CachePolicy
 import coil.request.ImageRequest
+import com.arthur.meal_db.R
 import com.arthur.meal_db.data.model.MealCoverSimple
 import com.arthur.meal_db.ui.theme.DarknesBlueGray
-import com.arthur.meal_db.utils.EmojiUtils
-import com.arthur.meal_db.R
 import com.arthur.meal_db.ui.theme.YellowDelicious
+import com.arthur.meal_db.utils.EmojiUtils
 
 @Composable
 fun MealsByCategoryListyHeader(category: String?) {

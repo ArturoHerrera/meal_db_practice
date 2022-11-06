@@ -10,17 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.material.Text
-import androidx.compose.ui.graphics.Brush
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.arthur.meal_db.ui.screens.components.ErrorAlert
 import com.arthur.meal_db.ui.screens.components.MealByCategoryList
 import com.arthur.meal_db.ui.screens.components.MealsByCategoryListyHeader
 import com.arthur.meal_db.ui.screens.components.ProgressBar
-import com.arthur.meal_db.ui.theme.BackgroundWhite
 import com.arthur.meal_db.ui.theme.YellowDelicious
-import com.arthur.meal_db.ui.theme.YellowLightDelicious
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalAnimationApi

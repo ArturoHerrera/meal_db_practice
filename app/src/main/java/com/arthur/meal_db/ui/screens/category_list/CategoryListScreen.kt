@@ -6,12 +6,17 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.arthur.meal_db.ui.screens.components.*
+import com.arthur.meal_db.ui.screens.components.CategorListyHeader
+import com.arthur.meal_db.ui.screens.components.CategoryListUi
+import com.arthur.meal_db.ui.screens.components.ErrorAlert
+import com.arthur.meal_db.ui.screens.components.ProgressBar
 import com.arthur.meal_db.ui.theme.BackgroundWhite
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 

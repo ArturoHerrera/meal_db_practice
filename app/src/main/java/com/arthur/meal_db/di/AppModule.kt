@@ -3,6 +3,7 @@ package com.arthur.meal_db.di
 import android.app.Application
 import android.content.Context
 import androidx.annotation.NonNull
+import com.arthur.meal_db.BuildConfig
 import com.arthur.meal_db.MyApplication
 import com.arthur.meal_db.utils.AppPreferences
 import com.google.gson.Gson
@@ -13,7 +14,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import com.arthur.meal_db.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
