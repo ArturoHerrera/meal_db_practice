@@ -1,5 +1,6 @@
 package com.arthur.meal_db.data.repository.category_list_repository.repositorys
 
+import android.util.Log
 import com.arthur.meal_db.data.model.CategoryList
 import com.arthur.meal_db.data.model.CategorySimple
 import com.arthur.meal_db.data.model.MealCoverList
@@ -83,7 +84,7 @@ class CategoryListRepository(
             )
         } else {
             MealCoverList(
-                errorMessage = result.getMessage() + "---",
+                errorMessage = "Ocurrio un problema inesperado.",
                 mealCoverSimpleList = listOf()
             )
         }
